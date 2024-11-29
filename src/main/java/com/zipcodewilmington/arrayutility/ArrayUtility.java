@@ -1,6 +1,8 @@
 package com.zipcodewilmington.arrayutility;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Stream;
 
 /**
@@ -10,110 +12,105 @@ public class ArrayUtility<Array extends Object> {
 
     Array[] array;
 
-    public ArrayUtility(Array[] inputArray){
+    public ArrayUtility(Array[] inputArray) {
         array = inputArray;
     }
 
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*    private I[] anarray;
-
-    public ArrayUtility(I[] inputArray){
-        anarray = inputArray;
-    }
-
-
-    public I[] merge(I[] arrayToMerge){
-        Object[] merged = Stream.of(anarray, arrayToMerge).flatMap(Stream::of).toArray(Object[]::new);
-        return convertArray(merged);
-    }
-
-    public I getMostCommonFromMerge(I[] arrayToMerge) {
-        I[] merged = merge(arrayToMerge);
-
-        I common = merged[0];
-        int commonCount = 0;
-        for (I i : merged){
-            int Count = getNumberOfOccurrences(merged,i);
-            if (Count > commonCount){
-                common = i;
-                commonCount = Count;
+    public Array[] removeValue(Array valueToRemove) {
+        List<Array> arrayList = new ArrayList<>();
+        for (Array element : array) {
+            if (!element.equals(valueToRemove)) {
+                arrayList.add(element);
             }
         }
 
-        return common;
+
+        return arrayList.toArray(Arrays.copyOf(array, arrayList.size()));
     }
 
 
-    public Integer countDuplicatesInMerge(I[] arrayToMerge, I valueToEvaluate) {
-        I[] merged = merge(arrayToMerge);
+    public int getNumberOfOccurrences(Array valueToEvaluate) {
 
-   return getNumberOfOccurrences(merged, valueToEvaluate); }
-
-
-    public Integer getNumberOfOccurrences(I valueToEvalute){
-        return getNumberOfOccurrences(anarray, valueToEvalute);
-    }
-
-
-    private Integer getNumberOfOccurrences(I [] merged,I valueToEvaluate) {
-
-        int count=0;
-        for (I i : merged){
-            if (i.equals(valueToEvaluate)){
+        int count = 0;
+        for (Array element : array) {
+            if (element.equals(valueToEvaluate)) {
                 count++;
             }
         }
-
-    return count;
+        return count;
     }
 
-    public I[] removeValue(I valueToRemove){
-//so we want I to be part of a list for the generics String,Integer,Object, rather than have all those methods
-        Object[] remove = Arrays.stream(anarray).filter(val -> !val.equals(valueToRemove)).toArray();
-        return convertArray(remove);
 
+    public Integer countDuplicatesInMerge(Array[] arrayToMerge, Array valueToEvaluate) {
+        int count = 0;
+
+        for (Array element : array) {
+            if (element.equals(valueToEvaluate)) {
+                count++;
+            }
+        }
+        for (Array element : arrayToMerge) {
+            if (element.equals(valueToEvaluate)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public Array getMostCommonFromMerge(Array[] arrayToMerge) {
+        Array CommonElement = null;
+        int maxCount = 0;
+
+        for (Array element : array) {
+            int count = countDuplicatesInMerge(arrayToMerge, element);
+
+            if (count > maxCount) {
+                CommonElement = element;
+                maxCount = count;
+            }
+        }
+        for (Array element : arrayToMerge) {
+            int count = countDuplicatesInMerge(array, element);
+            if (count > maxCount) {
+                CommonElement = element;
+                maxCount = count;
+            }
+        }
+        return CommonElement;
+    }
 }
 
-    private I[] convertArray(Object[] remove) {
-        I[] finalArray = Arrays.copyOfRange(anarray, 0,remove.length);
-        for (int i = 0; i < remove.length; i++){
-            finalArray[i] = (I)remove[i];
-        }
-   return finalArray;
-    }*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
