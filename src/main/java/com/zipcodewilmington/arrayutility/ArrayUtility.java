@@ -6,8 +6,13 @@ import java.util.stream.Stream;
 /**
  * Created by leon on 3/6/18.
  */
-public class ArrayUtility<I> {
+public class ArrayUtility<Array extends Object> {
 
+    Array[] array;
+
+    public ArrayUtility(Array[] inputArray){
+        array = inputArray;
+    }
 
 }
 
