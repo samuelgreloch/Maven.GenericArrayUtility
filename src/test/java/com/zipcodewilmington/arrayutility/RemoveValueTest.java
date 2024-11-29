@@ -1,7 +1,8 @@
 package com.zipcodewilmington.arrayutility;
 
-import com.zipcodewilmington.UnitTestingUtils;
 import org.junit.Test;
+
+import static com.zipcodewilmington.arrayutility.UnitTestingUtils.assertArrayEquality;
 
 /**
  * Created by leon on 3/1/18.
